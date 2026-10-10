@@ -8,211 +8,306 @@
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;min-height:100vh;padding:22px 14px;
- display:flex;align-items:center;justify-content:center;
- font-family:system-ui,sans-serif;color:#82475f;
- background:linear-gradient(145deg,#ffd8e8,#fff0f5,#fff8dc);
- overflow-x:hidden
-}
-.heart{
- position:fixed;pointer-events:none;opacity:.55;
- animation:float 5s ease-in-out infinite;
- font-size:25px
-}
-.h1{top:8%;left:8%}.h2{top:20%;right:8%;animation-delay:1s}
-.h3{bottom:10%;left:12%;animation-delay:2s}
-.h4{bottom:18%;right:10%;animation-delay:1.5s}
-@keyframes float{
- 0%,100%{transform:translateY(0) rotate(-8deg)}
- 50%{transform:translateY(-18px) rotate(8deg)}
+ margin:0;min-height:100vh;display:grid;place-items:center;
+ padding:16px;font-family:system-ui,sans-serif;color:#754257;
+ background:linear-gradient(135deg,#f6b9db,#ffe7d7,#d8f1ce);
+ overflow:hidden
 }
 .card{
- width:100%;max-width:420px;padding:25px 21px 23px;
- border:2px solid #fff;border-radius:30px;
- text-align:center;background:#ffffffed;
- box-shadow:0 16px 45px #d76a9630;
- position:relative;z-index:1
+ width:100%;max-width:430px;padding:22px 18px;
+ border:3px solid #fff;border-radius:30px;text-align:center;
+ background:#ffffffed;box-shadow:0 15px 45px #9b547329;
+ position:relative;overflow:hidden
 }
-.tag{
- display:inline-block;padding:7px 15px;border-radius:20px;
- background:#fff0f6;color:#d45c89;font-size:13px
-}
-.art{
- margin:14px auto 8px;width:180px;height:165px;
- border-radius:48% 52% 44% 56%;
- display:flex;align-items:center;justify-content:center;
- flex-direction:column;
- background:radial-gradient(circle,#fff8fb 20%,#ffe3ee 72%);
- position:relative
-}
-.bear{font-size:88px;line-height:1.2;filter:drop-shadow(0 5px 4px #c97b8c35)}
-.bearheart{font-size:25px;margin-top:-16px}
-.flower{position:absolute;font-size:30px}
-.f1{top:8px;left:5px}.f2{top:10px;right:5px}
-.f3{bottom:9px;left:9px}.f4{bottom:8px;right:7px}
-h1{font-size:25px;margin:13px 0;color:#d84f82}
-.message{
- background:#fff4f8;padding:18px 15px;border-radius:20px;
- line-height:2;font-size:15px;min-height:110px;
+.tag{font-size:12px;color:#c45888;letter-spacing:1px}
+h2{color:#cf4d83;font-size:23px;margin:8px 0}
+#message{
+ min-height:94px;padding:15px 13px;border-radius:20px;
+ background:#fff1f7;line-height:2;font-size:14px;
  white-space:pre-line
 }
-.progress{display:flex;justify-content:center;gap:8px;margin:17px 0}
-.dot{width:9px;height:9px;border-radius:50%;background:#f3ccda}
-.dot.active{background:#e45e90;width:24px;border-radius:10px}
-.buttons{display:flex;gap:10px;margin-top:20px}
+.scene{
+ height:230px;position:relative;overflow:hidden;
+ border-radius:23px;margin:16px 0;
+ background:linear-gradient(#fff4fa,#ffdfed);
+ border-bottom:5px solid #efb1d0
+}
+.cloud{position:absolute;font-size:24px;animation:cloud 5s linear infinite}
+.c1{top:18px;left:12%}.c2{top:44px;right:13%;animation-delay:2s}
+@keyframes cloud{50%{transform:translateX(14px)}}
+.character{
+ position:absolute;bottom:7px;left:calc(50% - 48px);
+ width:96px;height:132px;
+ transition:left .9s ease,opacity .7s,transform .5s;
+ z-index:2
+}
+.character.walk{animation:walk .28s ease-in-out infinite alternate}
+@keyframes walk{
+ from{transform:translateY(0) rotate(-2deg)}
+ to{transform:translateY(-5px) rotate(2deg)}
+}
+.character.happy{animation:happy .5s ease-in-out 3}
+@keyframes happy{
+ 0%,100%{transform:translateY(0) scale(1)}
+ 50%{transform:translateY(-18px) scale(1.05)}
+}
+.character.cry{animation:cry .18s ease-in-out infinite alternate}
+@keyframes cry{
+ from{transform:rotate(-4deg)}
+ to{transform:rotate(4deg)}
+}
+.character.vanish{
+ opacity:0;transform:translateY(-35px) scale(.5)
+}
+svg{width:100%;height:100%;overflow:visible}
+.ground{
+ position:absolute;bottom:3px;left:0;right:0;
+ height:2px;background:#efb1d0
+}
+.letter{
+ position:absolute;bottom:67px;left:calc(50% + 16px);
+ font-size:35px;z-index:3;
+ animation:letter 1.2s ease-in-out infinite alternate
+}
+@keyframes letter{
+ from{transform:rotate(-8deg) translateY(0)}
+ to{transform:rotate(8deg) translateY(-5px)}
+}
+.heart{
+ position:absolute;left:50%;top:40%;font-size:35px;
+ pointer-events:none;animation:heart 1.7s ease-out forwards;
+ z-index:5
+}
+@keyframes heart{
+ 0%{opacity:0;transform:translate(-50%,20px) scale(.3)}
+ 25%{opacity:1;transform:translate(-50%,-10px) scale(1.2)}
+ 100%{opacity:0;transform:translate(-50%,-125px) scale(.8)}
+}
+.dots{display:flex;justify-content:center;gap:7px;margin:12px}
+.dot{width:8px;height:8px;border-radius:9px;background:#f1c9dc}
+.dot.on{width:24px;background:#d9568b}
+.buttons{display:flex;gap:10px;margin-top:17px}
 button{
- flex:1;border:0;border-radius:17px;padding:14px 7px;
- font-size:14px;font-weight:700;cursor:pointer;
- transition:transform .2s
+ flex:1;border:0;border-radius:15px;padding:13px 7px;
+ font-size:14px;font-weight:bold;cursor:pointer;
+ transition:transform .15s
 }
 button:active{transform:scale(.96)}
-.yes{background:linear-gradient(135deg,#f58db2,#e85e91);color:white;
- box-shadow:0 5px 13px #e85e9130}
-.no{background:#fff0f5;color:#a45d78;border:1px solid #f8d6e2}
-.footer{font-size:12px;line-height:1.9;margin-top:19px;color:#a57b8c}
-#status{font-size:12px;margin-top:12px;color:#a45d78}
-.hidden{display:none}
+.yes{background:#e85d97;color:white;box-shadow:0 5px 12px #e85d9730}
+.no{background:#fbe7ef;color:#995b77}
+#status{font-size:12px;margin-top:10px;min-height:18px;color:#b35b81}
+footer{font-size:11px;line-height:1.8;margin-top:13px;color:#a4778b}
 </style>
 </head>
 <body>
-<div class="heart h1">💗</div>
-<div class="heart h2">🌸</div>
-<div class="heart h3">💕</div>
-<div class="heart h4">🌻</div>
-
 <main class="card">
- <div class="tag">🌷 A little letter for you 🌷</div>
+ <div class="tag">♡ A LITTLE LETTER FOR POE ♡</div>
+ <h2 id="title">ပိုးရေ… 💗</h2>
 
- <div class="art">
-  <span class="flower f1">🌼</span>
-  <span class="flower f2">🌸</span>
-  <div class="bear">🧸</div>
-  <div class="bearheart">💗</div>
-  <span class="flower f3">🌷</span>
-  <span class="flower f4">🌻</span>
+ <div class="scene" id="scene">
+  <span class="cloud c1">☁️</span>
+  <span class="cloud c2">☁️</span>
+
+  <div class="character walk" id="character">
+   <svg viewBox="0 0 100 140" aria-label="ချစ်စရာ အဖြူရောင်ကာတွန်းလေး">
+    <g id="body">
+     <path d="M22 38 Q8 8 25 8 Q39 7 45 24 Q53 20 62 24 Q76 5 88 15 Q98 26 83 44 Q94 63 83 83 L82 116 Q84 133 73 133 L27 133 Q16 133 19 117 L18 84 Q5 65 22 38Z"
+       fill="white" stroke="#553628" stroke-width="4.5" stroke-linejoin="round"/>
+     <path d="M23 25 Q29 17 36 29" fill="none" stroke="#f3a7a2" stroke-width="7" stroke-linecap="round"/>
+     <path d="M71 28 Q80 17 86 26" fill="none" stroke="#f3a7a2" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <g id="face">
+     <path d="M29 58 Q35 46 45 58 Q38 66 29 58Z" fill="#553628"/>
+     <path d="M57 58 Q66 46 73 58 Q65 66 57 58Z" fill="#553628"/>
+     <ellipse cx="22" cy="72" rx="7" ry="4" fill="#ffc3cf"/>
+     <ellipse cx="80" cy="72" rx="7" ry="4" fill="#ffc3cf"/>
+     <path d="M44 68 Q50 77 56 68" fill="none" stroke="#553628" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <g id="tears" opacity="0">
+     <path d="M34 65 Q26 78 34 79 Q42 77 34 65Z" fill="#70c9ff"/>
+     <path d="M68 65 Q60 78 68 79 Q76 77 68 65Z" fill="#70c9ff"/>
+    </g>
+    <path d="M30 112 Q25 124 32 125 M70 112 Q77 124 70 125"
+      fill="none" stroke="#553628" stroke-width="4" stroke-linecap="round"/>
+   </svg>
+  </div>
+
+  <div class="letter" id="letter">💌</div>
+  <div class="ground"></div>
  </div>
 
- <div class="progress">
-  <span class="dot active" id="d1"></span>
+ <div class="dots">
+  <span class="dot on" id="d1"></span>
   <span class="dot" id="d2"></span>
   <span class="dot" id="d3"></span>
  </div>
 
- <div class="tag" id="step">အဆင့် ၁ / ၃</div>
- <h1 id="title">ပိုးရေ… 💗</h1>
- <div class="message" id="message">
- ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။
- အချိန်လေးပေးပြီး ဖတ်ကြည့်ပေးမလား။ 🥺
- </div>
+ <div id="step" class="tag">အဆင့် ၁ / ၃</div>
+ <div id="message">အကောင်လေးက ပိုးအတွက် စာလေးယူလာတယ်။ 💌</div>
 
  <div class="buttons" id="buttons">
-  <button class="yes" id="yes">ဖတ်ကြည့်မယ် 💌</button>
-  <button class="no" id="no">အခုမဖတ်ချင်ဘူး 🌷</button>
+  <button class="yes" id="yes">စာလေးလက်ခံမယ် 💗</button>
+  <button class="no" id="no">အခုမယူသေးဘူး 🥺</button>
  </div>
 
  <div id="status"></div>
- <div class="footer">
-  ပိုးရဲ့ခံစားချက်ကို ကိုယ်လေးစားပါတယ်။<br>
-  အဖြေတစ်ခုခု ပေးဖို့ ဖိအားမရှိပါဘူးနော် ♡
- </div>
+ <footer>ပိုးရဲ့ခံစားချက်ကို လေးစားပါတယ် ♡</footer>
 </main>
 
 <script>
 const endpoint="https://formspree.io/f/xeaekzwy";
-let page=1;
-const answers={};
+let page=1,answers={},busy=false;
 
-const pages=[
+const data=[
  {},
  {
   title:"ပိုးရေ… 💗",
-  message:"ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။\nအချိန်လေးပေးပြီး ဖတ်ကြည့်ပေးမလား။ 🥺",
-  yes:"ဖတ်ကြည့်မယ် 💌",no:"အခုမဖတ်ချင်ဘူး 🌷"
+  message:"အကောင်လေးက ပိုးအတွက် စာလေးယူလာတယ်။ 💌",
+  yes:"စာလေးလက်ခံမယ် 💗",
+  no:"အခုမယူသေးဘူး 🥺"
  },
  {
   title:"ခွင့်လွှတ်ပေးနိုင်မလား 🥺",
-  message:"ပိုးရေ… ကိုယ် ခဏခဏ Block လုပ်မိခဲ့တာ ကိုယ့်အမှားပါ။ အဲဒီလိုလုပ်မိခဲ့တဲ့အတွက် တကယ်တောင်းပန်ပါတယ်။\n\nစိတ်မကောင်းဖြစ်တဲ့အချိန်မှာ အေးအေးဆေးဆေး ဖြေရှင်းဖို့ ကိုယ် ပိုကြိုးစားသင့်တယ်။ နောက်တစ်ခါ အဲဒီလိုမလုပ်မိအောင် သတိထားပါမယ်။ 💗",
-  yes:"ခွင့်လွှတ်မယ် 💗",no:"အခုတော့ မလွှတ်နိုင်သေးဘူး 🥺"
+  message:"ခဏခဏ Block လုပ်မိခဲ့တာ ကိုယ့်အမှားပါ။ တကယ်တောင်းပန်ပါတယ်။ စိတ်မကောင်းဖြစ်တဲ့အချိန်မှာ အေးအေးဆေးဆေး ဖြေရှင်းဖို့ ကိုယ် ပိုကြိုးစားပါမယ်။ 💗",
+  yes:"ခွင့်လွှတ်မယ် 💞",
+  no:"အခုတော့ မလွှတ်နိုင်သေးဘူး"
  },
  {
-  title:"ကိုယ့်ကို ချစ်သေးလား 🌻",
-  message:"ကိုယ်ကတော့ ပိုးကို ချစ်နေသေးတယ်။ ပိုးကို ဂရုစိုက်ချင်တဲ့စိတ်လည်း ရှိနေတုန်းပါပဲ။\n\nဒါပေမဲ့ ပိုးရဲ့ခံစားချက်ကိုလည်း လေးစားပါတယ်။ ကိုယ့်ကို ဘယ်လိုခံစားနေရလဲဆိုတာ ရိုးရိုးသားသား သိချင်တာပါ။ 💞",
-  yes:"ချစ်သေးတယ် 💞",no:"အဲဒီလို မခံစားရတော့ဘူး 🤍"
+  title:"ကိုယ့်ကို ချစ်သေးလား 🌷",
+  message:"ကိုယ်ကတော့ ပိုးကို ချစ်နေသေးတယ်။ ဒါပေမဲ့ ပိုးရဲ့ခံစားချက်ကိုလည်း လေးစားပါတယ်။ ရိုးရိုးသားသား ဖြေပေးနော်။ 💗",
+  yes:"ချစ်သေးတယ် 💗",
+  no:"မချစ်တော့ဘူး 🤍"
  }
 ];
 
-function render(){
- const p=pages[page];
- document.getElementById("step").textContent="အဆင့် "+page+" / ၃";
- document.getElementById("title").textContent=p.title;
- document.getElementById("message").textContent=p.message;
- document.getElementById("yes").textContent=p.yes;
- document.getElementById("no").textContent=p.no;
+const $=id=>document.getElementById(id);
+const character=$("character");
 
- for(let i=1;i<=3;i++){
-  document.getElementById("d"+i).classList.toggle("active",i===page);
- }
- document.getElementById("buttons").classList.remove("hidden");
- document.getElementById("status").textContent="";
- document.getElementById("yes").onclick=()=>choose(true);
- document.getElementById("no").onclick=()=>choose(false);
+function render(){
+ const p=data[page];
+ $("step").textContent="အဆင့် "+page+" / ၃";
+ $("title").textContent=p.title;
+ $("message").textContent=p.message;
+ $("yes").textContent=p.yes;
+ $("no").textContent=p.no;
+ for(let i=1;i<=3;i++) $("d"+i).classList.toggle("on",i===page);
+ $("buttons").style.display="flex";
+ $("letter").style.display=page===1?"block":"none";
+ $("status").textContent="";
+ $("yes").onclick=()=>choose(true);
+ $("no").onclick=()=>choose(false);
 }
 
-function finish(title,message,art){
- document.getElementById("title").textContent=title;
- document.getElementById("message").textContent=message;
- document.querySelector(".bear").textContent=art;
- document.querySelector(".bearheart").textContent="💗";
- document.getElementById("buttons").classList.add("hidden");
- document.getElementById("step").textContent="ပိုးအတွက် 💌";
- document.getElementById("status").textContent="ကျေးဇူးပါနော် 🌷";
+function hearts(){
+ for(let i=0;i<9;i++){
+  const h=document.createElement("span");
+  h.className="heart";
+  h.textContent=["💗","💕","💖","❤️","✨"][i%5];
+  h.style.left=(15+Math.random()*70)+"%";
+  h.style.animationDelay=(Math.random()*.8)+"s";
+  $("scene").appendChild(h);
+  setTimeout(()=>h.remove(),2600);
+ }
+}
+
+function endScreen(title,msg,crying){
+ character.classList.remove("walk","happy","cry");
+ if(crying){
+  character.classList.add("cry");
+  $("tears").setAttribute("opacity","1");
+  $("face").innerHTML=
+   '<path d="M29 57 Q37 50 45 57" fill="none" stroke="#553628" stroke-width="4" stroke-linecap="round"/>'+
+   '<path d="M57 57 Q66 50 73 57" fill="none" stroke="#553628" stroke-width="4" stroke-linecap="round"/>'+
+   '<path d="M43 77 Q50 69 57 77" fill="none" stroke="#553628" stroke-width="3" stroke-linecap="round"/>';
+ }else{
+  character.classList.add("happy");
+  $("face").innerHTML=
+   '<path d="M29 58 Q35 46 45 58 Q38 66 29 58Z" fill="#553628"/>'+
+   '<path d="M57 58 Q66 46 73 58 Q65 66 57 58Z" fill="#553628"/>'+
+   '<path d="M42 67 Q50 80 58 67" fill="none" stroke="#553628" stroke-width="3" stroke-linecap="round"/>'+
+   '<ellipse cx="22" cy="72" rx="7" ry="4" fill="#ffc3cf"/>'+
+   '<ellipse cx="80" cy="72" rx="7" ry="4" fill="#ffc3cf"/>';
+ }
+ $("title").textContent=title;
+ $("message").textContent=msg;
+ $("buttons").style.display="none";
+ $("letter").style.display="none";
+ $("status").textContent="";
+
+ setTimeout(()=>{
+  hearts();
+  character.classList.add("vanish");
+  const h=document.createElement("span");
+  h.className="heart";
+  h.textContent="💗";
+  h.style.fontSize="54px";
+  h.style.left="50%";
+  h.style.top="32%";
+  $("scene").appendChild(h);
+  setTimeout(()=>h.remove(),1800);
+ },900);
 }
 
 async function sendAnswers(){
- const payload={
-  subject:"ပိုးအတွက် Website အဖြေ 💗",
-  ...answers,
-  submitted_at:new Date().toISOString()
- };
  try{
   const r=await fetch(endpoint,{
    method:"POST",
    headers:{"Content-Type":"application/json","Accept":"application/json"},
-   body:JSON.stringify(payload)
+   body:JSON.stringify({
+    subject:"ပိုးရဲ့အဖြေ 💗",
+    ...answers,
+    submitted_at:new Date().toISOString()
+   })
   });
-  if(!r.ok) throw new Error("Submit failed");
-  return true;
- }catch(e){
-  return false;
- }
+  return r.ok;
+ }catch(e){return false}
 }
 
 async function choose(answer){
- answers["အဆင့် "+page]=answer
-  ?pages[page].yes:pages[page].no;
+ if(busy)return;
+ busy=true;
+ answers["အဆင့် "+page]=answer?data[page].yes:data[page].no;
 
  if(page===1&&!answer){
-  finish("ရပါတယ် ပိုးရေ 🌷",
-   "အခု မဖတ်ချင်လည်း ရပါတယ်နော်။\nပိုးရဲ့ဆုံးဖြတ်ချက်ကို ကိုယ်လေးစားပါတယ်။ 💗","🌷");
-  sendAnswers();
+  endScreen("ရပါတယ် ပိုးရေ 🌷",
+   "အခုမယူချင်လည်း ရပါတယ်။ ပိုးရဲ့ဆုံးဖြတ်ချက်ကို လေးစားပါတယ်။",true);
+  const ok=await sendAnswers();
+  $("status").textContent=ok?"အဖြေပို့ပြီးပါပြီ 💌":"အဖြေပို့မရသေးပါ။";
   return;
  }
 
- if(page<3){
-  page++;
-  render();
+ if(page===1&&answer){
+  character.classList.remove("walk");
+  character.classList.add("happy");
+  $("letter").textContent="💗";
+  hearts();
+  $("message").textContent="ပိုးက စာလေးလက်ခံလိုက်ပြီ! အကောင်လေး အရမ်းဝမ်းသာသွားတယ်။ 🥰";
+  $("buttons").style.display="none";
+  setTimeout(()=>{page=2;character.classList.remove("happy");render();busy=false},1900);
   return;
  }
 
- finish("အဖြေပေးလို့ ကျေးဇူးပါ 💗",
-  "ပိုးရဲ့အဖြေကို ကိုယ်လေးစားပါတယ်။\nဘယ်လိုအဖြေဖြစ်ဖြစ် ရိုးသားစွာ ဖြေပေးတဲ့အတွက် ကျေးဇူးတင်ပါတယ်။ 🧸🌻","🧸");
- document.getElementById("status").textContent="အဖြေပို့နေပါတယ်…";
+ if(page===2){
+  character.classList.remove("walk");
+  if(answer){character.classList.add("happy");hearts()}
+  else character.classList.add("cry");
+  $("buttons").style.display="none";
+  $("message").textContent=answer?
+   "ကျေးဇူးပါ ပိုးရေ။ ကိုယ် ပိုကောင်းအောင် ကြိုးစားပါမယ်။ 💗":
+   "နားလည်ပါတယ် ပိုးရေ။ ကိုယ် အချိန်ပေးပြီး ပိုကောင်းအောင် ကြိုးစားပါမယ်။ 🌷";
+  setTimeout(()=>{page=3;character.classList.remove("happy","cry");render();busy=false},2000);
+  return;
+ }
+
+ endScreen(answer?"ပျော်လိုက်တာ 💗":"ရိုးသားပေးလို့ ကျေးဇူးပါ 🤍",
+  answer?
+  "ပိုးရဲ့အဖြေအတွက် ကျေးဇူးပါ။ 💗 အကောင်လေးက အသည်းလေးပေးပြီး သွားတော့မယ်နော်။":
+  "ပိုးရဲ့ခံစားချက်ကို လေးစားပါတယ်။ အကောင်လေးက အသည်းလေးပေးပြီး နှုတ်ဆက်သွားတယ်။",!answer);
+ $("status").textContent="အဖြေပို့နေပါတယ်…";
  const ok=await sendAnswers();
- document.getElementById("status").textContent=ok
-  ?"အဖြေ ပို့ပြီးပါပြီ 💌"
-  :"အဖြေပို့မရသေးပါ။ အင်တာနက်နဲ့ Formspree ကို စစ်ပေးပါနော်။";
+ $("status").textContent=ok?
+  "အဖြေ ပို့ပြီးပါပြီ 💌":"အဖြေပို့မရသေးပါ။ Formspree ကို စစ်ကြည့်ပါနော်။";
 }
-
 render();
 </script>
 </body>
