@@ -1,167 +1,219 @@
-HTML
 
 <!DOCTYPE html>
 <html lang="my">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ပိုးအတွက် 💗</title>
+<title>ပိုးလေးအတွက် 💗</title>
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  background: linear-gradient(135deg, #ffe0eb, #fff8f0);
-  font-family: sans-serif;
-  color: #754357;
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;padding:22px 14px;
+ display:flex;align-items:center;justify-content:center;
+ font-family:system-ui,sans-serif;color:#82475f;
+ background:linear-gradient(145deg,#ffd8e8,#fff0f5,#fff8dc);
+ overflow-x:hidden
 }
-
-.card {
-  width: 100%;
-  max-width: 420px;
-  padding: 25px 20px;
-  border-radius: 28px;
-  background: #fff;
-  text-align: center;
-  box-shadow: 0 12px 40px #d77c9825;
+.heart{
+ position:fixed;pointer-events:none;opacity:.55;
+ animation:float 5s ease-in-out infinite;
+ font-size:25px
 }
-
-#art { font-size: 70px; margin: 20px; }
-
-h2 { color: #d94f7b; }
-
-#message {
-  background: #fff4f7;
-  border-radius: 18px;
-  padding: 20px;
-  line-height: 2;
-  min-height: 130px;
+.h1{top:8%;left:8%}.h2{top:20%;right:8%;animation-delay:1s}
+.h3{bottom:10%;left:12%;animation-delay:2s}
+.h4{bottom:18%;right:10%;animation-delay:1.5s}
+@keyframes float{
+ 0%,100%{transform:translateY(0) rotate(-8deg)}
+ 50%{transform:translateY(-18px) rotate(8deg)}
 }
-
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 22px;
+.card{
+ width:100%;max-width:420px;padding:25px 21px 23px;
+ border:2px solid #fff;border-radius:30px;
+ text-align:center;background:#ffffffed;
+ box-shadow:0 16px 45px #d76a9630;
+ position:relative;z-index:1
 }
-
-button {
-  flex: 1;
-  border: 0;
-  border-radius: 15px;
-  padding: 14px 8px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+.tag{
+ display:inline-block;padding:7px 15px;border-radius:20px;
+ background:#fff0f6;color:#d45c89;font-size:13px
 }
-
-#yes {
-  background: #ed6690;
-  color: white;
+.art{
+ margin:14px auto 8px;width:180px;height:165px;
+ border-radius:48% 52% 44% 56%;
+ display:flex;align-items:center;justify-content:center;
+ flex-direction:column;
+ background:radial-gradient(circle,#fff8fb 20%,#ffe3ee 72%);
+ position:relative
 }
-
-#no {
-  background: #f4e8ed;
-  color: #885b6c;
+.bear{font-size:88px;line-height:1.2;filter:drop-shadow(0 5px 4px #c97b8c35)}
+.bearheart{font-size:25px;margin-top:-16px}
+.flower{position:absolute;font-size:30px}
+.f1{top:8px;left:5px}.f2{top:10px;right:5px}
+.f3{bottom:9px;left:9px}.f4{bottom:8px;right:7px}
+h1{font-size:25px;margin:13px 0;color:#d84f82}
+.message{
+ background:#fff4f8;padding:18px 15px;border-radius:20px;
+ line-height:2;font-size:15px;min-height:110px;
+ white-space:pre-line
 }
-
-small { display: block; margin-top: 20px; }
+.progress{display:flex;justify-content:center;gap:8px;margin:17px 0}
+.dot{width:9px;height:9px;border-radius:50%;background:#f3ccda}
+.dot.active{background:#e45e90;width:24px;border-radius:10px}
+.buttons{display:flex;gap:10px;margin-top:20px}
+button{
+ flex:1;border:0;border-radius:17px;padding:14px 7px;
+ font-size:14px;font-weight:700;cursor:pointer;
+ transition:transform .2s
+}
+button:active{transform:scale(.96)}
+.yes{background:linear-gradient(135deg,#f58db2,#e85e91);color:white;
+ box-shadow:0 5px 13px #e85e9130}
+.no{background:#fff0f5;color:#a45d78;border:1px solid #f8d6e2}
+.footer{font-size:12px;line-height:1.9;margin-top:19px;color:#a57b8c}
+#status{font-size:12px;margin-top:12px;color:#a45d78}
+.hidden{display:none}
 </style>
 </head>
 <body>
+<div class="heart h1">💗</div>
+<div class="heart h2">🌸</div>
+<div class="heart h3">💕</div>
+<div class="heart h4">🌻</div>
+
 <main class="card">
-  <div id="step">အဆင့် ၁ / ၃</div>
-  <div id="art">💌</div>
-  <h2 id="title">ပိုးရေ… 💗</h2>
-  <p id="message">
-    ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။
-    ဖတ်ကြည့်ပေးမလား။
-  </p>
-  <div class="buttons">
-    <button id="yes" onclick="choose(true)">ဖွင့်မယ် 💌</button>
-    <button id="no" onclick="choose(false)">မဖွင့်ဘူး 🙈</button>
-  </div>
-  <small id="footer">အဆင်ပြေသလို ရွေးလို့ရပါတယ် ♡</small>
+ <div class="tag">🌷 A little letter for you 🌷</div>
+
+ <div class="art">
+  <span class="flower f1">🌼</span>
+  <span class="flower f2">🌸</span>
+  <div class="bear">🧸</div>
+  <div class="bearheart">💗</div>
+  <span class="flower f3">🌷</span>
+  <span class="flower f4">🌻</span>
+ </div>
+
+ <div class="progress">
+  <span class="dot active" id="d1"></span>
+  <span class="dot" id="d2"></span>
+  <span class="dot" id="d3"></span>
+ </div>
+
+ <div class="tag" id="step">အဆင့် ၁ / ၃</div>
+ <h1 id="title">ပိုးရေ… 💗</h1>
+ <div class="message" id="message">
+ ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။
+ အချိန်လေးပေးပြီး ဖတ်ကြည့်ပေးမလား။ 🥺
+ </div>
+
+ <div class="buttons" id="buttons">
+  <button class="yes" id="yes">ဖတ်ကြည့်မယ် 💌</button>
+  <button class="no" id="no">အခုမဖတ်ချင်ဘူး 🌷</button>
+ </div>
+
+ <div id="status"></div>
+ <div class="footer">
+  ပိုးရဲ့ခံစားချက်ကို ကိုယ်လေးစားပါတယ်။<br>
+  အဖြေတစ်ခုခု ပေးဖို့ ဖိအားမရှိပါဘူးနော် ♡
+ </div>
 </main>
 
 <script>
-let page = 1;
+const endpoint="https://formspree.io/f/xeaekzwy";
+let page=1;
+const answers={};
 
-const content = {
-  1: {
-    art: "💌",
-    title: "ပိုးရေ… 💗",
-    message: "ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။ ဖတ်ကြည့်ပေးမလား။",
-    yes: "ဖွင့်မယ် 💌",
-    no: "မဖွင့်ဘူး 🙈"
-  },
-  2: {
-    art: "🧸💗",
-    title: "ကိုယ့်ကို ခွင့်လွှတ်ပေးနိုင်မလား",
-    message: "ခဏခဏ Block လုပ်မိခဲ့တာ ကိုယ့်အမှားပါ။ စိတ်မထိန်းနိုင်ဘဲ အဲဒီလိုလုပ်မိတာအတွက် တကယ်တောင်းပန်ပါတယ်။ နောက်တစ်ခါ ပိုပြီးအေးအေးဆေးဆေး ဖြေရှင်းဖို့ ကြိုးစားပါမယ်။",
-    yes: "ခွင့်လွှတ်မယ် 💗",
-    no: "ခွင့်မလွှတ်ဘူး 🥺"
-  },
-  3: {
-    art: "🌻💖",
-    title: "ကိုယ့်ကို ချစ်သေးလား",
-    message: "ကိုယ်ကတော့ ပိုးကို ချစ်နေသေးတယ်။ ဒါပေမဲ့ ပိုးရဲ့ခံစားချက်ကိုလည်း လေးစားပါတယ်။ ကိုယ့်ကို ချစ်သေးလားဆိုတာ ရိုးရိုးသားသား သိချင်တာပါ။",
-    yes: "ချစ်မယ် 💞",
-    no: "မချစ်ဘူး 🤍"
-  }
-};
+const pages=[
+ {},
+ {
+  title:"ပိုးရေ… 💗",
+  message:"ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။\nအချိန်လေးပေးပြီး ဖတ်ကြည့်ပေးမလား။ 🥺",
+  yes:"ဖတ်ကြည့်မယ် 💌",no:"အခုမဖတ်ချင်ဘူး 🌷"
+ },
+ {
+  title:"ခွင့်လွှတ်ပေးနိုင်မလား 🥺",
+  message:"ပိုးရေ… ကိုယ် ခဏခဏ Block လုပ်မိခဲ့တာ ကိုယ့်အမှားပါ။ အဲဒီလိုလုပ်မိခဲ့တဲ့အတွက် တကယ်တောင်းပန်ပါတယ်။\n\nစိတ်မကောင်းဖြစ်တဲ့အချိန်မှာ အေးအေးဆေးဆေး ဖြေရှင်းဖို့ ကိုယ် ပိုကြိုးစားသင့်တယ်။ နောက်တစ်ခါ အဲဒီလိုမလုပ်မိအောင် သတိထားပါမယ်။ 💗",
+  yes:"ခွင့်လွှတ်မယ် 💗",no:"အခုတော့ မလွှတ်နိုင်သေးဘူး 🥺"
+ },
+ {
+  title:"ကိုယ့်ကို ချစ်သေးလား 🌻",
+  message:"ကိုယ်ကတော့ ပိုးကို ချစ်နေသေးတယ်။ ပိုးကို ဂရုစိုက်ချင်တဲ့စိတ်လည်း ရှိနေတုန်းပါပဲ။\n\nဒါပေမဲ့ ပိုးရဲ့ခံစားချက်ကိုလည်း လေးစားပါတယ်။ ကိုယ့်ကို ဘယ်လိုခံစားနေရလဲဆိုတာ ရိုးရိုးသားသား သိချင်တာပါ။ 💞",
+  yes:"ချစ်သေးတယ် 💞",no:"အဲဒီလို မခံစားရတော့ဘူး 🤍"
+ }
+];
 
-function render() {
-  const c = content[page];
-  document.getElementById("step").textContent =
-    `အဆင့် ${page} / ၃`;
-  document.getElementById("art").textContent = c.art;
-  document.getElementById("title").textContent = c.title;
-  document.getElementById("message").textContent = c.message;
-  document.getElementById("yes").textContent = c.yes;
-  document.getElementById("no").textContent = c.no;
+function render(){
+ const p=pages[page];
+ document.getElementById("step").textContent="အဆင့် "+page+" / ၃";
+ document.getElementById("title").textContent=p.title;
+ document.getElementById("message").textContent=p.message;
+ document.getElementById("yes").textContent=p.yes;
+ document.getElementById("no").textContent=p.no;
+
+ for(let i=1;i<=3;i++){
+  document.getElementById("d"+i).classList.toggle("active",i===page);
+ }
+ document.getElementById("buttons").classList.remove("hidden");
+ document.getElementById("status").textContent="";
+ document.getElementById("yes").onclick=()=>choose(true);
+ document.getElementById("no").onclick=()=>choose(false);
 }
 
-function choose(answer) {
-  if (page < 3) {
-    if (!answer) {
-      document.getElementById("art").textContent = "🌷";
-      document.getElementById("title").textContent = "ရပါတယ် ပိုးရေ";
-      document.getElementById("message").textContent =
-        "မဖွင့်ချင်လည်း ရပါတယ်နော်။ မင်းရဲ့ရွေးချယ်မှုကို လေးစားပါတယ်။";
-      document.getElementById("yes").textContent = "ဆက်ဖတ်မယ်";
-      document.getElementById("no").textContent = "ဒီမှာပဲ ရပ်မယ်";
-      document.getElementById("yes").onclick = () => {
-        page++;
-        render();
-      };
-      document.getElementById("no").onclick = () => {
-        document.getElementById("message").textContent =
-          "ဖတ်ပေးလို့ ကျေးဇူးပါနော် 💗";
-        document.querySelector(".buttons").style.display = "none";
-      };
-      return;
-    }
-    page++;
-    render();
-    return;
-  }
-
-  document.getElementById("art").textContent =
-    answer ? "💖" : "🌷";
-  document.getElementById("title").textContent =
-    answer ? "ရွေးပေးတာ ကျေးဇူးပါ 💗" : "အမှန်အတိုင်း ပြောပေးလို့ ကျေးဇူးပါ";
-  document.getElementById("message").textContent =
-    answer
-      ? "မင်းက ချစ်မယ်လို့ ရွေးပေးခဲ့တယ်။ 💗"
-      : "မင်းက မချစ်ဘူးလို့ ရွေးပေးခဲ့တယ်။ မင်းရဲ့ခံစားချက်ကို လေးစားပါတယ်။";
-  document.getElementById("footer").textContent =
-    "မင်းရဲ့ရွေးချယ်မှုကို လေးစားပါတယ် ♡";
-  document.querySelector(".buttons").style.display = "none";
+function finish(title,message,art){
+ document.getElementById("title").textContent=title;
+ document.getElementById("message").textContent=message;
+ document.querySelector(".bear").textContent=art;
+ document.querySelector(".bearheart").textContent="💗";
+ document.getElementById("buttons").classList.add("hidden");
+ document.getElementById("step").textContent="ပိုးအတွက် 💌";
+ document.getElementById("status").textContent="ကျေးဇူးပါနော် 🌷";
 }
+
+async function sendAnswers(){
+ const payload={
+  subject:"ပိုးအတွက် Website အဖြေ 💗",
+  ...answers,
+  submitted_at:new Date().toISOString()
+ };
+ try{
+  const r=await fetch(endpoint,{
+   method:"POST",
+   headers:{"Content-Type":"application/json","Accept":"application/json"},
+   body:JSON.stringify(payload)
+  });
+  if(!r.ok) throw new Error("Submit failed");
+  return true;
+ }catch(e){
+  return false;
+ }
+}
+
+async function choose(answer){
+ answers["အဆင့် "+page]=answer
+  ?pages[page].yes:pages[page].no;
+
+ if(page===1&&!answer){
+  finish("ရပါတယ် ပိုးရေ 🌷",
+   "အခု မဖတ်ချင်လည်း ရပါတယ်နော်။\nပိုးရဲ့ဆုံးဖြတ်ချက်ကို ကိုယ်လေးစားပါတယ်။ 💗","🌷");
+  sendAnswers();
+  return;
+ }
+
+ if(page<3){
+  page++;
+  render();
+  return;
+ }
+
+ finish("အဖြေပေးလို့ ကျေးဇူးပါ 💗",
+  "ပိုးရဲ့အဖြေကို ကိုယ်လေးစားပါတယ်။\nဘယ်လိုအဖြေဖြစ်ဖြစ် ရိုးသားစွာ ဖြေပေးတဲ့အတွက် ကျေးဇူးတင်ပါတယ်။ 🧸🌻","🧸");
+ document.getElementById("status").textContent="အဖြေပို့နေပါတယ်…";
+ const ok=await sendAnswers();
+ document.getElementById("status").textContent=ok
+  ?"အဖြေ ပို့ပြီးပါပြီ 💌"
+  :"အဖြေပို့မရသေးပါ။ အင်တာနက်နဲ့ Formspree ကို စစ်ပေးပါနော်။";
+}
+
+render();
 </script>
 </body>
 </html>
