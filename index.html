@@ -1,0 +1,167 @@
+HTML
+
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ပိုးအတွက် 💗</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffe0eb, #fff8f0);
+  font-family: sans-serif;
+  color: #754357;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: 25px 20px;
+  border-radius: 28px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 12px 40px #d77c9825;
+}
+
+#art { font-size: 70px; margin: 20px; }
+
+h2 { color: #d94f7b; }
+
+#message {
+  background: #fff4f7;
+  border-radius: 18px;
+  padding: 20px;
+  line-height: 2;
+  min-height: 130px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+button {
+  flex: 1;
+  border: 0;
+  border-radius: 15px;
+  padding: 14px 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ed6690;
+  color: white;
+}
+
+#no {
+  background: #f4e8ed;
+  color: #885b6c;
+}
+
+small { display: block; margin-top: 20px; }
+</style>
+</head>
+<body>
+<main class="card">
+  <div id="step">အဆင့် ၁ / ၃</div>
+  <div id="art">💌</div>
+  <h2 id="title">ပိုးရေ… 💗</h2>
+  <p id="message">
+    ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။
+    ဖတ်ကြည့်ပေးမလား။
+  </p>
+  <div class="buttons">
+    <button id="yes" onclick="choose(true)">ဖွင့်မယ် 💌</button>
+    <button id="no" onclick="choose(false)">မဖွင့်ဘူး 🙈</button>
+  </div>
+  <small id="footer">အဆင်ပြေသလို ရွေးလို့ရပါတယ် ♡</small>
+</main>
+
+<script>
+let page = 1;
+
+const content = {
+  1: {
+    art: "💌",
+    title: "ပိုးရေ… 💗",
+    message: "ကိုယ်ပြောချင်တာလေးရှိလို့ပါ။ ဖတ်ကြည့်ပေးမလား။",
+    yes: "ဖွင့်မယ် 💌",
+    no: "မဖွင့်ဘူး 🙈"
+  },
+  2: {
+    art: "🧸💗",
+    title: "ကိုယ့်ကို ခွင့်လွှတ်ပေးနိုင်မလား",
+    message: "ခဏခဏ Block လုပ်မိခဲ့တာ ကိုယ့်အမှားပါ။ စိတ်မထိန်းနိုင်ဘဲ အဲဒီလိုလုပ်မိတာအတွက် တကယ်တောင်းပန်ပါတယ်။ နောက်တစ်ခါ ပိုပြီးအေးအေးဆေးဆေး ဖြေရှင်းဖို့ ကြိုးစားပါမယ်။",
+    yes: "ခွင့်လွှတ်မယ် 💗",
+    no: "ခွင့်မလွှတ်ဘူး 🥺"
+  },
+  3: {
+    art: "🌻💖",
+    title: "ကိုယ့်ကို ချစ်သေးလား",
+    message: "ကိုယ်ကတော့ ပိုးကို ချစ်နေသေးတယ်။ ဒါပေမဲ့ ပိုးရဲ့ခံစားချက်ကိုလည်း လေးစားပါတယ်။ ကိုယ့်ကို ချစ်သေးလားဆိုတာ ရိုးရိုးသားသား သိချင်တာပါ။",
+    yes: "ချစ်မယ် 💞",
+    no: "မချစ်ဘူး 🤍"
+  }
+};
+
+function render() {
+  const c = content[page];
+  document.getElementById("step").textContent =
+    `အဆင့် ${page} / ၃`;
+  document.getElementById("art").textContent = c.art;
+  document.getElementById("title").textContent = c.title;
+  document.getElementById("message").textContent = c.message;
+  document.getElementById("yes").textContent = c.yes;
+  document.getElementById("no").textContent = c.no;
+}
+
+function choose(answer) {
+  if (page < 3) {
+    if (!answer) {
+      document.getElementById("art").textContent = "🌷";
+      document.getElementById("title").textContent = "ရပါတယ် ပိုးရေ";
+      document.getElementById("message").textContent =
+        "မဖွင့်ချင်လည်း ရပါတယ်နော်။ မင်းရဲ့ရွေးချယ်မှုကို လေးစားပါတယ်။";
+      document.getElementById("yes").textContent = "ဆက်ဖတ်မယ်";
+      document.getElementById("no").textContent = "ဒီမှာပဲ ရပ်မယ်";
+      document.getElementById("yes").onclick = () => {
+        page++;
+        render();
+      };
+      document.getElementById("no").onclick = () => {
+        document.getElementById("message").textContent =
+          "ဖတ်ပေးလို့ ကျေးဇူးပါနော် 💗";
+        document.querySelector(".buttons").style.display = "none";
+      };
+      return;
+    }
+    page++;
+    render();
+    return;
+  }
+
+  document.getElementById("art").textContent =
+    answer ? "💖" : "🌷";
+  document.getElementById("title").textContent =
+    answer ? "ရွေးပေးတာ ကျေးဇူးပါ 💗" : "အမှန်အတိုင်း ပြောပေးလို့ ကျေးဇူးပါ";
+  document.getElementById("message").textContent =
+    answer
+      ? "မင်းက ချစ်မယ်လို့ ရွေးပေးခဲ့တယ်။ 💗"
+      : "မင်းက မချစ်ဘူးလို့ ရွေးပေးခဲ့တယ်။ မင်းရဲ့ခံစားချက်ကို လေးစားပါတယ်။";
+  document.getElementById("footer").textContent =
+    "မင်းရဲ့ရွေးချယ်မှုကို လေးစားပါတယ် ♡";
+  document.querySelector(".buttons").style.display = "none";
+}
+</script>
+</body>
+</html>
